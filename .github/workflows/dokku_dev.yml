@@ -3,7 +3,7 @@ name: Deploy to Dokku (DEV)
 on:
   push:
     branches:
-      - dev
+      - dev-dokku
   pull_request:
     branches:
       - dokku
@@ -22,7 +22,7 @@ jobs:
         uses: dokku/github-action@master
         with:
           branch: ${{ github.ref_name }}
-          git_remote_url: ssh://dokku@m4rc310.com.br/${{ vars.DOKKU_APP_NAME }}
+          git_remote_url: ssh://dokku@m4rc310.com.br/${{ vars.DOKKU_APP_DEV_NAME }}
           ssh_private_key: ${{ secrets.DOKKU_SSH_PRIVATE_KEY }}
 
       - name: Add Dokku host to known_hosts
@@ -43,4 +43,4 @@ jobs:
           username: ${{ secrets.DOKKU_USER }}
           password: ${{ secrets.DOKKU_PSW }}
           port: 22
-          script: bash ~/scripts/config_nginx.sh ${{ vars.DOKKU_APP_NAME }}
+          script: bash ~/scripts/config_nginx.sh ${{ vars.DOKKU_APP_DEV_NAME }}
