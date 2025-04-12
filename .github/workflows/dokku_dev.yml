@@ -2,6 +2,9 @@
 name: Deploy to Dokku (DEV)
 on:
   push:
+    tags:
+	    - v*
+  push:
     branches:
       - dev-dokku
   pull_request:
