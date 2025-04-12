@@ -1,0 +1,46 @@
+---
+name: Deploy to Dokku (PROD)
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - dokku
+permissions:
+  contents: read
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cloning repo
+        uses: actions/checkout@master
+        with:
+          fetch-depth: 0
+          
+      - name: Push to dokku
+        uses: dokku/github-action@master
+        with:
+          branch: ${{ github.ref_name }}
+          git_remote_url: ssh://dokku@m4rc310.com.br/${{ vars.DOKKU_APP_NAME }}
+          ssh_private_key: ${{ secrets.DOKKU_SSH_PRIVATE_KEY }}
+
+      - name: Add Dokku host to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DOKKU_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H "m4rc310.com.br,159.112.177.194" >> ~/.ssh/known_hosts
+
+  configure-nginx:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure Nginx for app
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.DOKKU_HOST }}
+          username: ${{ secrets.DOKKU_USER }}
+          password: ${{ secrets.DOKKU_PSW }}
+          port: 22
+          script: bash ~/scripts/config_nginx.sh ${{ vars.DOKKU_APP_NAME }}

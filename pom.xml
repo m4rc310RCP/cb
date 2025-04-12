@@ -27,7 +27,7 @@
 		<url />
 	</scm>
 	<properties>
-		<java.version>23</java.version>
+		<java.version>22</java.version>
 		<m4rc310.starter.version>1.0.18</m4rc310.starter.version>
 <!--		<m4rc310.starter.version>0.0.1-SNAPSHOT</m4rc310.starter.version>-->
 	</properties>

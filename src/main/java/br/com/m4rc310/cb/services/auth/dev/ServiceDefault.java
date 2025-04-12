@@ -37,7 +37,6 @@ public class ServiceDefault extends MService{
 		MUser u = new MUser();
 		u.setUsername(user.getUsername());
 		u.setPassword(user.getPassword());
-		
 		return jwt.generateToken(u);
 	}
 	
