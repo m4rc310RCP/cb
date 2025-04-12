@@ -25,5 +25,4 @@ public class User implements Serializable, IConst{
 	@Column(name = VALUE$password)
 	@GraphQLQuery(name=VALUE$password, description=DESC$value_password)
 	private String password;
-	
 }
