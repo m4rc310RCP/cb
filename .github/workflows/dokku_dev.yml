@@ -2,11 +2,8 @@
 name: Deploy to Dokku (DEV)
 on:
   push:
-    branches:
-      - dev-dokku
-  pull_request:
-    branches:
-      - dokku
+    tags:
+      - v*
 permissions:
   contents: read
 jobs:
