@@ -3,7 +3,7 @@ name: Deploy to Dokku (DEV)
 on:
   push:
     tags:
-	    - v*
+      - v*
   push:
     branches:
       - dev-dokku
