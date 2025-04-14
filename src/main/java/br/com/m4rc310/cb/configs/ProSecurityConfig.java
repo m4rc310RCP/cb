@@ -1,8 +1,6 @@
 package br.com.m4rc310.cb.configs;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-
+import java.text.MessageFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -21,6 +19,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import br.com.m4rc310.cb.constants.ILocalConst;
 import br.com.m4rc310.cb.db.models.auth.user.IUserRepository;
 import br.com.m4rc310.cb.db.models.auth.user.User;
+import br.com.m4rc310.cb.messages.IConst;
 import br.com.m4rc310.core.graphql.configurations.security.IMAuthUserProvider;
 import br.com.m4rc310.core.graphql.configurations.security.dtos.MUser;
 import br.com.m4rc310.core.graphql.configurations.security.impls.MGraphQLJwtService;
@@ -32,7 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 @EnableCaching
 @EnableScheduling
 @Profile(ILocalConst.VALUE_PROFILE_PROD)
-public class ProSecurityConfig {
+public class ProSecurityConfig implements IConst {
 	
 	@Autowired
 	private IUserRepository userRepository;
@@ -46,6 +45,14 @@ public class ProSecurityConfig {
 	@PostConstruct
 	private void init() {
 		log.info("****** Loading PROD config's ******");
+		
+		
+		User user = new User();
+		user.setUsername("mls");
+		user.setPassword("mls");
+		user.setListAuthorities(ADMIN);
+		
+		userRepository.save(user);
 	}
 	
 	
@@ -57,8 +64,8 @@ public class ProSecurityConfig {
 			@Cacheable(value = "authUserCache", key = "#username")
 			public MUser authUser(String username, Object password) throws Exception {
 				MUser user = getUserFromUsername(username);
-				assertEquals(user.getPassword(), password);
-				assertFalse("Invalid user", isValidUser(user));				
+				assertTrue(user.getPassword().equals(password), ERROR$invalid_credentials);
+				assertTrue(isValidUser(user), ERROR$invalid_user);				
 				return user;
 			}
 
@@ -69,6 +76,10 @@ public class ProSecurityConfig {
 					MUser user = new MUser();
 					user.setUsername(u.getUsername());
 					user.setPassword(u.getPassword());
+					
+					String[] roles = u.getListAuthorities() != null ? u.getListAuthorities().split(";"): null;
+					user.setRoles(roles);
+					
 					return user;
 				} catch (Exception e) {					
 					return null;
@@ -77,7 +88,7 @@ public class ProSecurityConfig {
 
 			@Override
 			public boolean isValidUser(MUser user) {
-				return false;
+				return true;
 			}
 
 			@Override
@@ -115,4 +126,12 @@ public class ProSecurityConfig {
 	public void clearCache(String token) {
 		log.info("Removed cashe for token: {}", token);
 	}
+	
+	private void assertTrue(boolean match, String message, Object... args) throws Exception{
+		if (!match) {
+			message = MessageFormat.format(message, args);
+			throw new Exception(message);
+		}
+	}
+	
 }

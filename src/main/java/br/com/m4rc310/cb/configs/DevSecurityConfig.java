@@ -65,18 +65,18 @@ public class DevSecurityConfig {
 				
 				log.info("Load user and add to cache");
 				
-				Date now = new Date();
-
-				Calendar cal = new GregorianCalendar();
-				cal.setTime(now);
-				cal.add(Calendar.SECOND, 10);
-				
-				log.info("Auth user and register auto clean cache.");
-
-				taskScheduler.schedule(() -> {
-					DevSecurityConfig config = applicationContext.getBean(DevSecurityConfig.class);
-					config.clearCache(username);
-				}, cal.toInstant());
+//				Date now = new Date();
+//
+//				Calendar cal = new GregorianCalendar();
+//				cal.setTime(now);
+//				cal.add(Calendar.MINUTE, 10);
+//				
+//				log.info("Auth user and register auto clean cache.");
+//
+//				taskScheduler.schedule(() -> {
+//					DevSecurityConfig config = applicationContext.getBean(DevSecurityConfig.class);
+//					config.clearCache(username);
+//				}, cal.toInstant());
 				
 				return user;
 			}
@@ -112,7 +112,7 @@ public class DevSecurityConfig {
 
 				Calendar cal = new GregorianCalendar();
 				cal.setTime(now);
-				cal.add(Calendar.SECOND, 10);
+				cal.add(Calendar.MINUTE, 10);
 				
 				log.info("Auth user and register auto clean cache.");
 
