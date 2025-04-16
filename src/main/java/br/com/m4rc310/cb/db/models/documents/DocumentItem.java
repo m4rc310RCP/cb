@@ -2,6 +2,7 @@ package br.com.m4rc310.cb.db.models.documents;
 
 import java.io.Serializable;
 
+import br.com.m4rc310.cb.db.models.listeners.DocumentItemListener;
 import br.com.m4rc310.cb.messages.IConst;
 import io.leangen.graphql.annotations.GraphQLQuery;
 import io.leangen.graphql.annotations.types.GraphQLType;
@@ -17,7 +18,7 @@ import lombok.Data;
 
 @Data
 @Entity(name = IConst.TYPE$document_item)
-@EntityListeners(PrePersistListener.class)
+@EntityListeners(DocumentItemListener.class)
 @IdClass(DocumentItemId.class)
 @GraphQLType(name=IConst.TYPE$document_item, description=IConst.DESC$type_document_item)
 public class DocumentItem implements Serializable, IConst{

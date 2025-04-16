@@ -1,15 +1,18 @@
-package br.com.m4rc310.cb.db.models.documents;
+package br.com.m4rc310.cb.db.models.listeners;
 
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
+import br.com.m4rc310.cb.db.models.documents.DocumentId;
+import br.com.m4rc310.cb.db.models.documents.DocumentItem;
+import br.com.m4rc310.cb.db.models.documents.IDocumentItemRepository;
 import jakarta.persistence.PrePersist;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class PrePersistListener {
+public class DocumentItemListener {
 
 	@Autowired
 	private ApplicationContext context;

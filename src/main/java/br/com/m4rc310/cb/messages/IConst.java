@@ -30,13 +30,17 @@ public interface IConst {
 	public static final String DESC$argument_user = "${desc.argument.user}";
 	public static final String DESC$code_product = "${desc.code.product}";
 	public static final String DESC$description_product = "${desc.description.product}";
+	public static final String DESC$enum_kind_document_fiscal_receipt = "${desc.enum.kind.document.fiscal.receipt}";
 	public static final String DESC$kind_document = "${desc.kind.document}";
 	public static final String DESC$kind_person = "${desc.kind.person}";
 	public static final String DESC$list_authorities = "${desc.list.authorities}";
 	public static final String DESC$mutation_generate_token = "${desc.mutation.generate.token}";
+	public static final String DESC$mutation_register_nfe = "${desc.mutation.register.nfe}";
+	public static final String DESC$number_control = "${desc.number.control}";
 	public static final String DESC$number_cpfcnpj = "${desc.number.cpfcnpj}";
 	public static final String DESC$number_document = "${desc.number.document}";
 	public static final String DESC$number_document_item = "${desc.number.document.item}";
+	public static final String DESC$number_key_nfe = "${desc.number.key.nfe}";
 	public static final String DESC$number_serie = "${desc.number.serie}";
 	public static final String DESC$number_version = "${desc.number.version}";
 	public static final String DESC$query_test = "${desc.query.test}";
@@ -52,6 +56,12 @@ public interface IConst {
 	//--------------------------------------------------
 	// @GraphQLQuery(name=DESCRIPTION$product, description=DESC$description_product)
 	public static final String DESCRIPTION$product = "${description.product}";
+
+	//--------------------------------------------------
+	// ********** ENUM **********
+	//--------------------------------------------------
+	// @GraphQLQuery(name=ENUM$kind_document_fiscal_receipt, description=DESC$enum_kind_document_fiscal_receipt)
+	public static final String ENUM$kind_document_fiscal_receipt = "${enum.kind.document.fiscal.receipt}";
 
 	//--------------------------------------------------
 	// ********** ERROR **********
@@ -80,16 +90,22 @@ public interface IConst {
 	//--------------------------------------------------
 	// @GraphQLMutation(name=MUTATION$generate_token, description=DESC$mutation_generate_token)
 	public static final String MUTATION$generate_token = "${mutation.generate.token}";
+	// @GraphQLMutation(name=MUTATION$register_nfe, description=DESC$mutation_register_nfe)
+	public static final String MUTATION$register_nfe = "${mutation.register.nfe}";
 
 	//--------------------------------------------------
 	// ********** NUMBER **********
 	//--------------------------------------------------
+	// @GraphQLQuery(name=NUMBER$control, description=DESC$number_control)
+	public static final String NUMBER$control = "${number.control}";
 	// @GraphQLQuery(name=NUMBER$cpfcnpj, description=DESC$number_cpfcnpj)
 	public static final String NUMBER$cpfcnpj = "${number.cpfcnpj}";
 	// @GraphQLQuery(name=NUMBER$document, description=DESC$number_document)
 	public static final String NUMBER$document = "${number.document}";
 	// @GraphQLQuery(name=NUMBER$document_item, description=DESC$number_document_item)
 	public static final String NUMBER$document_item = "${number.document.item}";
+	// @GraphQLQuery(name=NUMBER$key_nfe, description=DESC$number_key_nfe)
+	public static final String NUMBER$key_nfe = "${number.key.nfe}";
 	// @GraphQLQuery(name=NUMBER$serie, description=DESC$number_serie)
 	public static final String NUMBER$serie = "${number.serie}";
 	// @GraphQLQuery(name=NUMBER$version, description=DESC$number_version)
