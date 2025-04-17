@@ -20,7 +20,7 @@ public class Person implements Serializable, IConst{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name = NUMBER$cpfcnpj, length = 25)
+	@Column(name = NUMBER$cpfcnpj, length = 18)
 	@GraphQLQuery(name=NUMBER$cpfcnpj, description=DESC$number_cpfcnpj)
 	private String cpfcnpj;
 

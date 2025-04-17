@@ -55,7 +55,6 @@ public class ProSecurityConfig implements IConst {
 		userRepository.save(user);
 	}
 	
-	
 	@Bean
 	IMAuthUserProvider getAuthUserProviderForProd(ApplicationContext applicationContext, TaskScheduler taskScheduler) {
 		return new IMAuthUserProvider() {

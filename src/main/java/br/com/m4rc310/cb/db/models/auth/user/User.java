@@ -9,7 +9,6 @@ import io.leangen.graphql.annotations.GraphQLQuery;
 import io.leangen.graphql.annotations.types.GraphQLType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.ForeignKey;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
@@ -28,7 +27,7 @@ public class User implements Serializable, IConst{
 	private String username;
 	
 	@OneToOne()
-	@JoinColumn(name = NUMBER$cpfcnpj, foreignKey = @ForeignKey(name = "fk_user_person"))
+	@JoinColumn(name = NUMBER$cpfcnpj)
 	@GraphQLIgnore	
 	private Person pessoa;
 	

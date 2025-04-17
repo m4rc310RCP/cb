@@ -9,6 +9,7 @@ import jakarta.persistence.JoinColumns;
 import jakarta.persistence.ManyToOne;
 
 public class DocumentItemId implements IConst{
+	
 	@Id
 	@ManyToOne
 	@JoinColumns({
