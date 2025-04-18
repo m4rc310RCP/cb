@@ -68,14 +68,13 @@ public class DocumentService extends MService{
 		item.setDocument(doc);
 		item = documentItemRepository.save(item);
 		
-		
-		
 		return doc;
 	}
 	
-    @Scheduled(cron = "*/59 * * * * *")
+    @Scheduled(cron = "*/15 * * * * *")
 	public void onHeartBeat() {
-    	jdbc.execute("SELECT 1");
+    	//jdbc.execute("SELECT 1");
+    	personRepository.findById("00000000000").orElse(null);
 	}
 	
 	
